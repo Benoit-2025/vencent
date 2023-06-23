@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h1 class="text-center">
+{% if editMode %}
+    Modification la commande
+{% else %}
+    Création d'un article
+{% endif %}
+</h1>
+
+{# {{ form(formArticle) }} #}
+<div class="container">
+{{form_start(formCommande, {
+    attr: {
+        novalidate: 'novalidate'
+    }
+})}}
+
+{{form_row(formCommande.title)}}
+{{form_row(formCommande.category)}}
+{{form_row(formCommande.content, {
+    label: "Contenu",
+    attr: {
+        placeholder: "contenu de l'article"
+    }
+})}}
+{{form_row(formCommande.image)}}
+
+<button type="submit" class="btn btn-primary mt-2">
+{% if editMode %}
+    Enregistrer les modifications
+{% else %}
+    Ajouter l'article
+{% endif %}
+</button>
+
+{{form_end(formCommande)}}
+</div>
+{% endblock %}
